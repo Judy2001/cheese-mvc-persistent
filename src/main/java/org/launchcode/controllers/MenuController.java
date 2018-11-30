@@ -25,19 +25,15 @@ public class MenuController {
 
     @RequestMapping(value = "")
     public String index(Model model) {
-
-        model.addAttribute("menus", menuDao.findAll());
         model.addAttribute("title", "Menus");
-
+        model.addAttribute("menus", menuDao.findAll());
         return "menu/index";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddMenuForm(Model model) {
-
         model.addAttribute("title", "Add Menu");
         model.addAttribute(new Menu());
-
         return "menu/add";
     }
 

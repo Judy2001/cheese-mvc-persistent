@@ -36,6 +36,7 @@ public class Cheese {
 
     public Cheese() { }
 
+
     public int getId() {
         return id;
     }
@@ -61,4 +62,5 @@ public class Cheese {
     }
 
     public Category getCategory() {return category;}
+
 }

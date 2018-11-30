@@ -20,18 +20,16 @@ public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-
-        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("title", "Categories");
+        model.addAttribute("categories", categoryDao.findAll());
         return "category/index";
 
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCategoryForm(Model model) {
-
         model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
         return "category/add";
