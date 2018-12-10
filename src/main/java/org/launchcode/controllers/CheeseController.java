@@ -30,8 +30,8 @@ public class CheeseController {
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("cheeses", cheeseDao.findAll());
         model.addAttribute("title", "My Cheeses");
+        model.addAttribute("cheeses", cheeseDao.findAll());
 
         return "cheese/index";
     }
