@@ -16,7 +16,7 @@ public class Cheese {
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min=3, max=15, message = "Cheese name must be 3-15 characters long")
     private String name;
 
     @NotNull

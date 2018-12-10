@@ -85,7 +85,7 @@ public class CheeseController {
 
 
     @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.GET)
-    public String displayEditCheeseForm(Model model, @PathVariable int cheeseId) {
+    public String displayEditForm(Model model, @PathVariable int cheeseId) {
 
         Cheese aCheese = cheeseDao.findOne(cheeseId);
 
