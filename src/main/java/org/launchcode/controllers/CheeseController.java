@@ -129,7 +129,6 @@ public class CheeseController {
         List<Cheese> cheeses = cat.getCheeses();
         model.addAttribute("title","Cheeses in Category: " + cat.getName());
         model.addAttribute("cheeses", cheeses);
-        //model.addAttribute("category", cat.getName());
 
         return "cheese/index";
     }
