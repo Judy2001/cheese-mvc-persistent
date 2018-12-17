@@ -1,8 +1,8 @@
+/*
 package org.launchcode.controllers;
 
 import org.launchcode.models.User;
-import org.launchcode.models.data.UserData;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.launchcode.models.data.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,22 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 
 @Controller
 @RequestMapping(value = "user")
 public class UserController {
 
-/*    @Autowired
-    private UserData userDao;*/
+    //@Autowired
+    private UserDao userDao;
 
 
     @RequestMapping(value="")
     public String index(Model model) {
 
         model.addAttribute("title", "Users");
-        model.addAttribute("users", UserData.getAll());
+        model.addAttribute("users", userDao.findAll());
 
         return "user/index";
     }
@@ -38,50 +37,35 @@ public class UserController {
 
         model.addAttribute("title", "Add User");
         model.addAttribute(new User());
-        //model.addAttribute("users", userDao.findAll());
+        model.addAttribute("users", userDao.findAll());
 
         return "user/add";
     }
 
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddUserForm(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
+*/
+/*    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String processAddUserForm(@ModelAttribute @Valid User newUser, Errors errors,
+                                     @RequestParam int userId, String verify, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Cheese");
-            return "user/add";
+            model.addAttribute("title", "Add User");
+            return "food/add";
         }
 
-
-
-        UserData.add(newUser);
-        //model.addAttribute("user", user);
-
-/*        if(user.getUsername().isEmpty()) {
-            ;
-            return "user/add";
-        }*/
-
-/*              if (user.getPassword().equals(verify)) {
-            return "user/index";
-        } else {
-            return "user/add";
-        }*/
-
-/*        User aUser = User.createAUser();
-        userDao.save(aUser);*/
-
-
+        User user = userDao.findOne(userId);
+        newUser.setUsername(user);
+        userDao.save(newUser);
 
         return "redirect:";
+    }*//*
 
-    }
 
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveUserForm(Model model) {
         model.addAttribute("title", "Remove User");
-        model.addAttribute("users", UserData.getAll());
+        model.addAttribute("users", userDao.findAll());
         return "user/remove";
     }
 
@@ -90,10 +74,10 @@ public class UserController {
     public String processRemoveUserForm(@RequestParam int[] userIds) {
 
         for (int userId : userIds) {
-            UserData.remove(userId);
+            userDao.delete(userId);
         }
 
         return "redirect:";
     }
 
-}
+}*/

@@ -23,12 +23,10 @@ public class Category {
     @JoinColumn(name = "category_id")
     private List<Cheese> cheeses;
 
+
     public Category(){
-        // query cheese DAO and find cheeses that matches this Categories Id
-
-
-        // add them to your list of cheeses
     }
+
 
     public Category(String name){
         this.name = name;

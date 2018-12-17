@@ -1,13 +1,13 @@
+/*
 package org.launchcode.models;
 
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 
 
 //@Entity
@@ -18,15 +18,19 @@ public class User {
     private int id;
 
     @NotNull
-    @Size(min=2, max=15, message = "Username must be 2-15 letters long")
+    @Size(min=5, max=15, message = "Username must be 5-15 letters long")
     private String username;
 
     @Email(message = "Not a valid email address")
     private String email;
 
     @NotNull
-    @Size(min=8, max=25, message = "Password must be 8-25 characters long")
+    @Size(min=1, message = "Password must not be empty")
     private String password;
+
+    @OneToMany
+    @JoinColumn(name = "food_day_id")
+    private static ArrayList<User> users = new ArrayList<>();
 
 
     public User(String username, String email) {
@@ -39,7 +43,40 @@ public class User {
     }
 
 
-    public void setAUser(User newUser) {
+*/
+/*    public void setAUser(User newUser) {
+    }*//*
+
+
+
+    public static void add(User newUser) {
+
+        users.add(newUser);
+    }
+
+
+    public static void remove(int id) {
+        User userToRemove = getById(id);
+        users.remove(userToRemove);
+    }
+
+
+    public static ArrayList<User> getAll() {
+        return users;
+    }
+
+
+    public static User getById(int id) {
+
+        User theUser = null;
+
+        for (User candidateUser : users) {
+            if (candidateUser.getId() == id) {
+                theUser = candidateUser;
+            }
+        }
+
+        return theUser;
     }
 
 
@@ -71,4 +108,4 @@ public class User {
         this.password = password;
     }
 
-}
+}*/

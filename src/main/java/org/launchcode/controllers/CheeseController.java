@@ -53,6 +53,7 @@ public class CheeseController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
+            model.addAttribute("categories", categoryDao.findAll());
 
             return "cheese/add";
         }
@@ -101,11 +102,11 @@ public class CheeseController {
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String processEditForm(Model model, @ModelAttribute @Valid Cheese cheese,
-                                  @RequestParam int cheeseId, Errors errors) {
+                                  Errors errors, @RequestParam int cheeseId) {
 
         if (errors.hasErrors()) {
 
-            model.addAttribute("title", "Add Cheese");
+            model.addAttribute("title", "Edit Cheese");
             model.addAttribute("cheese", cheese);
 
             return "cheese/edit";
@@ -121,14 +122,14 @@ public class CheeseController {
     }
 
 
-    @RequestMapping(value = "category/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "category", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id) {
 
         Category cat = categoryDao.findOne(id);
         List<Cheese> cheeses = cat.getCheeses();
         model.addAttribute("title","Cheeses in Category: " + cat.getName());
         model.addAttribute("cheeses", cheeses);
-        model.addAttribute("category", cat.getName());
+        //model.addAttribute("category", cat.getName());
 
         return "cheese/index";
     }
