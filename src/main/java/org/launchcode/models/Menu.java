@@ -19,8 +19,7 @@ public class Menu {
     private List<Cheese> cheeses;
 
 
-    public Menu() {
-    }
+    public Menu() { }
 
 
     public void addItem(Cheese item){
@@ -39,7 +38,6 @@ public class Menu {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public List<Cheese> getCheeses() {
         return cheeses;
